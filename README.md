@@ -1,8 +1,9 @@
-krshjgftikh
-fdgljkhfkjghkjdfhkghfkjh
-XD!
+# O projekcie
+Lorem ipsum
 
-# dupa
+# Symulator
+![](docs/assets/simWin.png)
 
-### instalacja
-[dso_01_01_00_05_16.bmp](https://github.com/user-attachments/files/25659331/dso_01_01_00_05_16.bmp)
+dsfsds
+
+
