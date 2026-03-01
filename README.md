@@ -1,6 +1,7 @@
 # O projekcie
 Lorem ipsum
 
+
 # Symulator
 
 Gry na konsolę testować można w dedykowanym symulatorze (zaimplementowana obsługa wyświetlacza matrycowego oraz przycisków). Obsługiwany jest w systemach operacyjnych Windows oraz Linux.
@@ -40,13 +41,62 @@ make --version
 
 ### Kompilacja i uruchomienie gry
 
-Przenieś na swój komputer folder **simulator**, otwórz wiersz polecenia i przejdź do ścieżki tego folderu (najłatwiej poprzez wpisanie `cmd` w pasku adresu eksploratora plików z otwartym katalogiem symulatora). Wpisz `make` aby skompilować program lub `make run` aby skompilować i uruchomić aplikację symulatora.
+Skopiuj folder **simulator** na swój komputer. Otwórz wiersz polecenia w tej lokalizacji (najprościej poprzez wpisanie `cmd` w pasku adresu eksploratora plików). Wpisz polecenie `make`, aby skompilować program, lub `make run`, aby skompilować i uruchomić aplikację symulatora.
 
 ![](docs/assets/simCompile.png)
 
 ## Instalacja i konfiguracja w systemie Linux (testowane na Ubuntu 24.04.04 LTS)
 
-Zainstaluj biblioteki graficzne:
-```bash
-sudo apt install libgl1-mesa-dev libx11-dev
+Zainstaluj potrzebne narzędzia i biblioteki graficzne:
 ```
+sudo apt install g++ make libgl1-mesa-dev libx11-dev
+```
+
+Aplikację symulatora kompiluj poleceniem `make` (lub `make run`, aby automatycznie uruchomić) z poziomu katalogu **simulator**.
+
+
+## TODO kompatybilność
+
+[opisać funkcje]
+
+# Programowanie konsoli w Arduino IDE
+
+## Instalacja i konfiguracja środowiska
+
+Pobierz i zainstaluj środowisko [Arduino IDE](https://www.arduino.cc/en/software/), a następnie w **File > Preferences > Additional boards manager URLs** dodaj pakiet:
+```
+https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json
+```
+![](docs/assets/arduinoIDEpref.png)
+
+Zainstaluj płytki **Raspberry Pi Pico/RP2040/RP2350** z panelu **BOARDS MANAGER**.
+
+![](docs/assets/arduinoIDEboard.png)
+
+Zainstaluj poniższe biblioteki z panelu **LIBRARY MANAGER** wraz ze wszystkimi zależnościami (w przypadku pojawienia się komunikatu **Install library dependencies** kliknij **INSTALL ALL**):
+
+`FastLED` by *Daniel Garcia*<br>
+`RTClib` by *Adafruit*<br>
+`Adafruit ST7735 and ST7789 Library` by *Adafruit*
+
+![](docs/assets/arduinoIDElib.png)
+
+
+## Programowanie mikrokontrolera
+
+Otwórz pobrany projekt **TKN_Console** w środowisku Arduino IDE, a następnie z menu **Tools** wybierz płytkę **Waveshare RP2040 Zero**, konfigurację pamięci **Flash Size: 2MB (Sketch: 1792KB, FS: 256KB)** oraz taktowanie procesora **CPU Speed: 125 MHz**. Na tym etapie możliwa jest już kompilacja programu (przycisk **Verify**),
+
+Po podłączeniu kablem USB-C do mikrokontrolera wybierz odpowiedni dostępny **Port** i skompiluj oraz wgraj program za pomocą przycisku **Upload**.
+
+![](docs/assets/arduinoIDEtools.png)
+
+
+# Dokumentacja i struktura projektu
+
+## Struktura plików
+
+Projekt składa się z plików:
+
+### `TKN_Console.ino`:
+
+Obsługuje konfigurację, przełączanie i pętle główne gier. Zawiera Tworzy potrzebne obiekty globalne, inicjuje moduły, aktywuje timer do 
