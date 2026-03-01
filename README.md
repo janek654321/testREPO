@@ -89,7 +89,13 @@ Zainstaluj poniższe biblioteki z panelu **LIBRARY MANAGER** wraz ze wszystkimi 
 
 ## Programowanie mikrokontrolera
 
-Otwórz pobrany projekt **TKN_Console** w środowisku Arduino IDE, a następnie z menu **Tools** wybierz płytkę **Waveshare RP2040 Zero**, konfigurację pamięci **Flash Size: 2MB (Sketch: 1792KB, FS: 256KB)** oraz taktowanie procesora **CPU Speed: 125 MHz**. Na tym etapie możliwa jest już kompilacja programu (przycisk **Verify**),
+Otwórz pobrany projekt **TKN_Console** w środowisku Arduino IDE, a następnie z menu **Tools** wybierz następujące ustawienia:
+
+Board: **Waveshare RP2040 Zero**<br>
+Flash Size: **2MB (Sketch: 1792KB, FS: 256KB)**<br>
+CPU Speed: **125 MHz**.
+
+Na tym etapie możliwa jest już kompilacja programu (przycisk **Verify**).
 
 Po podłączeniu kablem USB-C do mikrokontrolera wybierz odpowiedni dostępny **Port** i skompiluj oraz wgraj program za pomocą przycisku **Upload**.
 
