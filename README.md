@@ -198,6 +198,42 @@ Gotowe! Twoja gra powinna pojawić się w menu konsoli po wgraniu programu.
 
 ### `void setPixel(uint8_t x, uint8_t y, Color color)`
 
-Ustawia piksel o współrzędnych `x` (0 - 9) i `y` (0 - 19) na kolor `color` (**BLACK**, **RED**, **ORANGE**, **YELLOW**, **LIGHTGREEN**, **GREEN**, **LIGHTBLUE**, **BLUE**, **VIOLET**, **PINK**, **WHITE**).
+Ustawia piksel o współrzędnych `x` (0 - 9) i `y` (0 - 19) na kolor `color` (BLACK, RED, ORANGE, YELLOW, LIGHTGREEN, GREEN, LIGHTBLUE, BLUE, VIOLET, PINK, WHITE). Funkcja ta zawiera korekcję kolorów dla poszczególnych pasków LED.
+
+**Uwaga! Aby zaktualizować wyświetlacz należy wywołać metodę `FastLED.show()`**
 
 ![](docs/assets/matrixDisplay.png)
+
+### `FastLED.show()`
+
+Metoda z biblioteki **FastLED** do aktualizacji wyświetlacza. Dla najlepszych efektów należy używać jej **jednokrotnie** i **tylko** w przypadku zmian pikseli na matrycy.
+
+### `FastLED.clear()`
+
+Metoda z biblioteki **FastLED** do czyszczenia całego wyświetlacza. Zmiany będą widoczne po wywołaniu metody `FastLED.show()`.
+
+### Użycie pozostałych metod z biblioteki FastLED **nie jest  zalecane**.
+
+## Obsługa przycisków
+
+Zdefiniowane nazwy przycisków `Button`: BTN_L, BTN_R, BTN_U, BTN_D, BTN_ENT, BTN_ESC
+
+![](docs/assets/keys.png)
+
+### Do obsługi przycisków należy skorzystać z globalnego obiektu `keys` klasy `InputManager`. Zaimplementowany jest debouncing oraz mechanizm zapamiętywania stanów.
+
+### `bool keys.wasPressed(Button b)`
+
+Metoda ta sprawdza, czy dany przycisk został wciśnięty, a następnie automatycznie resetuje jego flagę stanu. Oznacza to, że po wciśnięciu przycisku metoda `wasPressed` **jednorazowo** zwróci `true`.
+
+### `bool keys.wasReleased(Button b)`
+
+Działa podobnie jak `wasPressed`, lecz wykrywa puszczenie przycisku.
+
+- ### `bool keys.isDown(Button b)`
+
+    Odczytuje aktualny stan przycisku (wciśnięty - zwraca `true`)
+
+- ### `bool keys.clear()`
+
+    Czyści flagi stanów wciśnięcia i puszczenia dla wszystkich przycisków.
