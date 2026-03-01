@@ -4,7 +4,8 @@ Lorem ipsum
 # Spis treści
 - [Symulator](#symulator)
 - [Programowanie konsoli w Arduino IDE](#programowanie-konsoli-w-arduino-ide)
-- [Dokumentacja i struktura projektu](#dokumentacja-i-struktura-projektu)
+- [Struktura projektu](#struktura-projektu)
+- [Dokumentacja kodu](#dokumentacja-kodu)
 
 # Symulator 
 
@@ -95,7 +96,7 @@ Po podłączeniu kablem USB-C do mikrokontrolera wybierz odpowiedni dostępny **
 ![](docs/assets/arduinoIDEtools.png)
 
 
-# Dokumentacja i struktura projektu
+# Struktura projektu
 
 ## Struktura plików
 
@@ -129,7 +130,7 @@ Plik nagłówkowy głównego menu konsoli (wybór gier, konfiguracja parametrów
 
 Implementacja metod z menu konsoli.
 
-### Gry zawarte są w plikach `NazwaGry.h` oraz `NazwaGry.cpp`
+#### Gry zawarte są w plikach `NazwaGry.h` oraz `NazwaGry.cpp`
 
 ## Tworzenie i dodawanie własnej gry
 
@@ -184,4 +185,13 @@ Aby utworzyć pustą grę o nazwie **TestGame**, wyświetlanej w menu konsoli ja
 
 Gotowe! Twoja gra powinna pojawić się w menu konsoli po wgraniu programu.
 
-## Opis funkcji
+# Dokumentacja kodu
+
+
+## Obsługa głównego wyświetlacza matrycowego 10x20
+
+### `void setPixel(uint8_t x, uint8_t y, Color color)`
+
+Ustawia piksel o współrzędnych `x` (0 - 9) i `y` (0 - 19) na kolor `color` (**BLACK**, **RED**, **ORANGE**, **YELLOW**, **LIGHTGREEN**, **GREEN**, **LIGHTBLUE**, **BLUE**, **VIOLET**, **PINK**, **WHITE**).
+
+![](docs/assets/matrixDisplay.png)
