@@ -9,6 +9,7 @@ Lorem ipsum
 - [Programowanie konsoli w Arduino IDE](#programowanie-konsoli-w-arduino-ide)
 - [Struktura projektu](#struktura-projektu)
 - [Dokumentacja kodu](#dokumentacja-kodu)
+- [Narzędzie do rysowania](#narzędzie-do-rysowania)
 
 # Symulator 
 
@@ -321,4 +322,32 @@ a następnie przy pomocy metod obiektu `file` z klasy `FileManager` zapisywać i
 
 # Narzędzie do rysowania
 
-Strona [drawingTool.html](drawingTool.html)
+Strona [drawingTool.html](drawingTool.html) pozwala na rysowanie po wirtualnym wyświetlaczu, który może być dodatkowo synchronizowany w czasie rzeczywistym z fizycznym wyświetlaczem konsoli. W tym celu należy podłączyć urządzenie do komputera za pomocą kabla USB, z menu ustawień konsoli (kombinacja klawiszy **U** + **L** + **D** + **ESC** w menu wyboru gry) wybrać pozycję **SERIAL DRAW MODE** i nawiązać połączenie za pomocą przycisku **CONNECT** widocznym na stronie narzędzia.
+
+Rysowanie odbywa się za pomocą lewego oraz prawego przycisku myszy. Kolor przypisany do konkretnego przycisku można zmienić, klikając jedno z pól wyboru w palecie kolorów. Stan wirtualnego wyświetlacza można zapisywać i wczytywać, operując na plikach (przyciski **Export file** oraz **Import file**).
+
+![](docs/assets/drawingTool.png)
+
+
+# Dokumentacja hardware'u
+
+## Lista głównych części
+
+- płytka z mikrokontrolerem [RP2040-Zero](https://www.waveshare.com/wiki/RP2040-Zero)
+- wyświetlacz LCD [1,8" TFT 128x160px](https://www.lcdwiki.com/1.8inch_SPI_Module_ST7735S_SKU:MSP1803)
+- moduł RTC [DS3231 AT24C32 I²C](https://manuals.plus/asin/B07Q7NZTQS)
+- diody adresowalne [WS2812B](https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf) (201 szt.)
+- przyciski Arcade (5 szt.)
+- fotorezystor
+
+## Schemat elektryczny
+
+![](docs/assets/diagram.svg)
+
+## Zasilanie
+
+Konsola zasilana jest zasilaczem sieciowym **DC 5.0V 2.0A**, który podaje napięcie na matrycę LED oraz resztę elektroniki. Możliwe jest **jednoczesne** zasilanie konsoli poprzez kabel USB-C podpięty do mikrokontrolera (dzięki diodzie **D1**) - wtedy matryca pobiera energię z zasilacza, a pozostała elektronika z gniazda USB (<100 mA). Zasilenie **tylko** przez USB również jest dopuszczalne, choć matryca LED nie będzie wtedy aktywna.
+
+## Zdjęcia
+
+[zdj](./docs/assets)
