@@ -3,6 +3,9 @@ Lorem ipsum
 
 # Spis treści
 - [Symulator](#symulator)
+    - [Instalacja i konfiguracja w systemie Windows](#instalacja-i-konfiguracja-w-systemie-windows-testowane-na-windows-11)
+    - [Instalacja i konfiguracja w systemie Linux](#instalacja-i-konfiguracja-w-systemie-linux-testowane-na-ubuntu-240404-lts)
+
 - [Programowanie konsoli w Arduino IDE](#programowanie-konsoli-w-arduino-ide)
 - [Struktura projektu](#struktura-projektu)
 - [Dokumentacja kodu](#dokumentacja-kodu)
@@ -60,9 +63,52 @@ sudo apt install g++ make libgl1-mesa-dev libx11-dev
 Aplikację symulatora kompiluj poleceniem `make` (lub `make run`, aby automatycznie uruchomić) z poziomu katalogu **simulator**.
 
 
-## TODO kompatybilność
+## Kompatybilność z projektem w Arduino IDE
 
-[opisać funkcje]
+Symulator zapewnia pełną kompatybilność ze wszystkimi wypisanymi metodami dotyczącymi obsługi [wyświetlacza matrycowego](#obsługa-głównego-wyświetlacza-matrycowego-10x20) oraz [przycisków](#obsługa-przycisków), a także z funkcją `millis()`, która zwraca liczbę milisekund od uruchomienia programu. Przyciski na klawiaturze zmapowane są w następujący sposób:
+
+- Strzałka w lewo **-** `BTN_L`<br>
+- Strzałka w prawo **-** `BTN_R`<br>
+- Strzałka w górę **-** `BTN_U`<br>
+- Strzałka w dół **-** `BTN_D`<br>
+- Enter **-** `BTN_ENT`<br>
+- Backspace **-** `BTN_ESC`<br>
+
+Symulowaną grę najlepiej umieszczać w klasie `SimGame` - symulator obsługuje jedną grę, tworząc obiekt tej klasy.
+
+Szablon pliku `SimGame.h`:
+```cpp
+#ifndef SIMGAME_H
+#define SIMGAME_H
+
+#include "Engine.h"
+
+extern InputManager keys;
+extern FakeFastLED FastLED;
+
+class SimGame : public Game {
+private:
+
+public:
+  void setup() override;
+  void loop() override;
+};
+
+#endif
+```
+
+Szablon pliku `SimGame.cpp`:
+```cpp
+#include "SimGame.h"
+
+void SimGame::setup() {
+
+}
+
+void SimGame::loop() {
+  
+}
+```
 
 # Programowanie konsoli w Arduino IDE
 
@@ -108,33 +154,33 @@ Po podłączeniu kablem USB-C do mikrokontrolera wybierz odpowiedni dostępny **
 
 Projekt składa się z plików:
 
-### `TKN_Console.ino`:
+- ### `TKN_Console.ino`:
 
-Obsługuje konfigurację, przełączanie i pętle główne gier, tworzy obiekty globalne, inicjuje moduły. Zawiera funkcje `void setup()` i `void loop()` oraz (dla drugiego rdzenia mikroprocesora - do obsługi przycisków) funkcje `void setup1()` i `void loop1()`.
+    Obsługuje konfigurację, przełączanie i pętle główne gier, tworzy obiekty globalne, inicjuje moduły. Zawiera funkcje `void setup()` i `void loop()` oraz (dla drugiego rdzenia mikroprocesora - do obsługi przycisków) funkcje `void setup1()` i `void loop1()`.
 
-### `Engine.h`:
+- ### `Engine.h`:
 
-Plik nagłówkowy "silnika" konsoli. Zawiera m.in. definicje wyprowadzeń, dołączenia zewnętrznych bibliotek, definicje nazw kolorów i przycisków, definicje klas:
+    Plik nagłówkowy "silnika" konsoli. Zawiera m.in. definicje wyprowadzeń, dołączenia zewnętrznych bibliotek, definicje nazw kolorów i przycisków, definicje klas:
 
-`InputManager` - do zarządzania przyciskami (debouncing, zapamiętywanie stanów)<br>
-`Game` - bazowa klasa dla gier<br>
-`FileManager` - do zapisu danych w pamięci FLASH (konfiguracja, wyniki w grach, itp.)
+    `InputManager` - do zarządzania przyciskami (debouncing, zapamiętywanie stanów)<br>
+    `Game` - bazowa klasa dla gier<br>
+    `FileManager` - do zapisu danych w pamięci FLASH (konfiguracja, wyniki w grach, itp.)
 
-### `Engine.cpp`:
+- ### `Engine.cpp`:
 
-Zawiera implementację metod z w.w. klas.
+    Zawiera implementację metod z w.w. klas.
 
-### `GameRegistry.h`
+- ### `GameRegistry.h`
 
-Stanowi rejestr gier, zawierający: nazwy ich klas, dołączenia plików nagłówkowych gier, a także tytuły wyświetlane w menu wyboru gry.
+    Stanowi rejestr gier, zawierający: nazwy ich klas, dołączenia plików nagłówkowych gier, a także tytuły wyświetlane w menu wyboru gry.
 
-### `Menu.h`:
+- ### `Menu.h`:
 
-Plik nagłówkowy głównego menu konsoli (wybór gier, konfiguracja parametrów użytkownika, uruchomienie trybu rysowania, itd.), które jest pochodną klasy `Game`. Z poziomu Menu "zlecane" jest przełączenie gry wybranej przez użytkownika.
+    Plik nagłówkowy głównego menu konsoli (wybór gier, konfiguracja parametrów użytkownika, uruchomienie trybu rysowania, itd.), które jest pochodną klasy `Game`. Z poziomu Menu "zlecane" jest przełączenie gry wybranej przez użytkownika.
 
-### `Menu.cpp`:
+- ### `Menu.cpp`:
 
-Implementacja metod z menu konsoli.
+    Implementacja metod z menu konsoli.
 
 #### Gry zawarte są w plikach `NazwaGry.h` oraz `NazwaGry.cpp`
 
@@ -196,44 +242,83 @@ Gotowe! Twoja gra powinna pojawić się w menu konsoli po wgraniu programu.
 
 ## Obsługa głównego wyświetlacza matrycowego 10x20
 
-### `void setPixel(uint8_t x, uint8_t y, Color color)`
+- ### `void setPixel(uint8_t x, uint8_t y, Color color)`
 
-Ustawia piksel o współrzędnych `x` (0 - 9) i `y` (0 - 19) na kolor `color` (BLACK, RED, ORANGE, YELLOW, LIGHTGREEN, GREEN, LIGHTBLUE, BLUE, VIOLET, PINK, WHITE). Funkcja ta zawiera korekcję kolorów dla poszczególnych pasków LED.
+    Ustawia piksel o współrzędnych `x` (0 - 9) i `y` (0 - 19) na kolor `color` (BLACK, RED, ORANGE, YELLOW, LIGHTGREEN, GREEN, LIGHTBLUE, BLUE, VIOLET, PINK, WHITE). Funkcja ta zawiera korekcję kolorów dla poszczególnych pasków LED.
 
-**Uwaga! Aby zaktualizować wyświetlacz należy wywołać metodę `FastLED.show()`**
+    **Uwaga! Aby zaktualizować wyświetlacz należy wywołać metodę `FastLED.show()`**
 
 ![](docs/assets/matrixDisplay.png)
 
-### `FastLED.show()`
+- ### `FastLED.show()`
 
-Metoda z biblioteki **FastLED** do aktualizacji wyświetlacza. Dla najlepszych efektów należy używać jej **jednokrotnie** i **tylko** w przypadku zmian pikseli na matrycy.
+    Metoda z biblioteki **FastLED** do aktualizacji wyświetlacza. Dla najlepszych efektów należy używać jej **jednokrotnie** i **tylko** w przypadku zmian pikseli na matrycy.
 
-### `FastLED.clear()`
+- ### `FastLED.clear()`
 
-Metoda z biblioteki **FastLED** do czyszczenia całego wyświetlacza. Zmiany będą widoczne po wywołaniu metody `FastLED.show()`.
+    Metoda z biblioteki **FastLED** do czyszczenia całego wyświetlacza. Zmiany będą widoczne po wywołaniu metody `FastLED.show()`.
 
 ### Użycie pozostałych metod z biblioteki FastLED **nie jest  zalecane**.
 
 ## Obsługa przycisków
 
-Zdefiniowane nazwy przycisków `Button`: BTN_L, BTN_R, BTN_U, BTN_D, BTN_ENT, BTN_ESC
+Zdefiniowane nazwy przycisków `Button`: BTN_L, BTN_R, BTN_U, BTN_D, BTN_ENT, BTN_ESC.
 
 ![](docs/assets/keys.png)
 
 ### Do obsługi przycisków należy skorzystać z globalnego obiektu `keys` klasy `InputManager`. Zaimplementowany jest debouncing oraz mechanizm zapamiętywania stanów.
 
-### `bool keys.wasPressed(Button b)`
+- ### `bool keys.wasPressed(Button b)`
 
-Metoda ta sprawdza, czy dany przycisk został wciśnięty, a następnie automatycznie resetuje jego flagę stanu. Oznacza to, że po wciśnięciu przycisku metoda `wasPressed` **jednorazowo** zwróci `true`.
+    Metoda ta sprawdza, czy dany przycisk został wciśnięty, a następnie automatycznie resetuje jego flagę stanu. Oznacza to, że po wciśnięciu przycisku metoda `wasPressed()` **jednorazowo** zwróci `true`.
 
-### `bool keys.wasReleased(Button b)`
+- ### `bool keys.wasReleased(Button b)`
 
-Działa podobnie jak `wasPressed`, lecz wykrywa puszczenie przycisku.
+    Działa podobnie jak `wasPressed()`, lecz wykrywa puszczenie przycisku.
 
 - ### `bool keys.isDown(Button b)`
 
-    Odczytuje aktualny stan przycisku (wciśnięty - zwraca `true`)
+    Odczytuje aktualny stan przycisku (wciśnięty - zwraca `true`).
 
 - ### `bool keys.clear()`
 
     Czyści flagi stanów wciśnięcia i puszczenia dla wszystkich przycisków.
+
+<br>
+
+**Uwaga!**<br>
+Możliwa jest obsługa przycisku BTN_ESC, jednak należy pamiętać, że jego przytrzymanie przez 1,5 s powoduje zamknięcie gry - logika ta zaimplementowana jest na poziomie programu głównego.
+
+## Obsługa wyświetlacza TFT
+
+Wyświetlacz jest już skonfigurowany (przez program główny) i gotowy do użycia pod obiektem `tft`. Metody i stałe przydatne do jego obsługi można poznać analizując kod innych gier (w tym menu konsoli) lub też bezpośrednio w dokumentacji bibliotek [**Adafruit GFX**](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-gfx-graphics-library.pdf) i [**Adafruit ST7735**](https://github.com/adafruit/Adafruit-ST7735-Library).
+
+## Obsługa systemu plików
+
+Dane (np. tablicę wyników w grze) można zapisywać w pamięci nieulotnej (FLASH) jako pliki. Dane te najlepiej przechowywać w dowolnej strukturze:
+
+```cpp
+struct ExampleStructure {
+  uint32_t ExampleArray1[4];
+  uint16_t ExampleVariable1;
+  uint16_t ExampleVariable2;
+};
+
+ExampleStructure exampleData;
+```
+
+a następnie przy pomocy metod obiektu `file` z klasy `FileManager` zapisywać i odczytywać z pliku:
+
+- ### `void file.saveData("TestGameData", &exampleData, sizeof(exampleData))`
+
+    Pozwala zapisać dane ze zmiennej `exampleData` typu `ExampleStructure` do pliku o nazwie `TestGameData`.
+
+- ### `bool file.loadData("TestGameData", &exampleData, sizeof(exampleData))`
+
+    Pozwala wczytać dane z pliku o nazwie `TestGameData` do zmiennej `exampleData` typu `ExampleStructure`. Zwraca `false` jeśli plik nie istnieje.
+
+### W nazwie pliku powinno użyć się nazwy gry w celu uniknięcia konfliktu z plikami innych gier.
+
+# Narzędzie do rysowania
+
+Strona [drawingTool.html](drawingTool.html)
