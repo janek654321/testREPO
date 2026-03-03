@@ -404,6 +404,8 @@ Rysowanie odbywa się za pomocą lewego oraz prawego przycisku myszy. Kolor przy
 
 ![](docs/assets/drawingTool.png)
 
+# Obsługa GitHub
+
 # Uwagi, wskazówki i rozwiązywanie problemów
 
 - Nie należy zmieniać **domyślnej jasności wyświetlacza**, ustawionej metodą `FastLED.setBrightness()`. Została ona wyliczona na podstawie wydajności prądowej zasilacza i maksymalnego poboru prądu przez konsolę, a jej modyfikacja może doprowadzić do **uszkodzenia** któregoś z elementów.
