@@ -25,6 +25,8 @@
 
 <br>
 
+TUTAJ TEST
+
 # O projekcie
 
 To repozytorium zawiera informacje na temat konsoli do gier stworzonej w ramach Technicznego Koła Naukowego na UMK w Toruniu.
@@ -403,6 +405,8 @@ Strona [drawingTool.html](drawingTool.html) pozwala na rysowanie po wirtualnym w
 Rysowanie odbywa się za pomocą lewego oraz prawego przycisku myszy. Kolor przypisany do konkretnego przycisku można zmienić, klikając jedno z pól wyboru w palecie kolorów. Stan wirtualnego wyświetlacza można zapisywać i wczytywać, operując na plikach (przyciski **Export file** oraz **Import file**).
 
 ![](docs/assets/drawingTool.png)
+
+# Obsługa GitHub
 
 # Uwagi, wskazówki i rozwiązywanie problemów
 
