@@ -43,7 +43,7 @@ void Tetris::loop() {
 
       if (!block.moveDown()) {
         if (!block.save_position()) { 
-          switchGame = 0; //game over
+          switchGame = 0; //game over!!!
         }
 
         if (block.filled_line()) remove_lines();

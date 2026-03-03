@@ -15,7 +15,7 @@ void SimGame::setup() {
   setPixel(2, 17, releasedColor);
   setPixel(2, 19, releasedColor);
   setPixel(0, 19, releasedColor);
-  FastLED.show();
+  FastLED.show(w);
 }
 
 void SimGame::loop() {
