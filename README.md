@@ -407,7 +407,7 @@ Rysowanie odbywa się za pomocą lewego oraz prawego przycisku myszy. Kolor przy
 
 Współpraca nad kodem gier opiera się na klonowaniu wspólnego repozytorium oraz wykorzystaniu systemu Git do aktualizacji plików na platformie GitHub. W tym celu należy zwrócić się z prośbą o nadanie uprawnień do modyfikacji repozytorium do **przewodniczącego TKN**.
 
-Najłatwiej jest wykorzystać w tym celu aplikację [GitHub Desktop](https://desktop.github.com/download/). Należy zalogować się na swoje konto i [sklonować](https://docs.github.com/en/desktop/adding-and-cloning-repositories/cloning-a-repository-from-github-to-github-desktop) to repozytorium. 
+Najłatwiej jest wykorzystać w tym celu aplikację [GitHub Desktop](https://desktop.github.com/download/). Należy zalogować się na swoje konto i [sklonować](https://docs.github.com/en/desktop/adding-and-cloning-repositories/cloning-a-repository-from-github-to-github-desktop) to repozytorium. W środowisku Arduino IDE 
 
 # Uwagi, wskazówki i rozwiązywanie problemów
 
