@@ -25,8 +25,6 @@
 
 <br>
 
-TUTAJ TEST
-
 # O projekcie
 
 To repozytorium zawiera informacje na temat konsoli do gier stworzonej w ramach Technicznego Koła Naukowego na UMK w Toruniu.
@@ -276,7 +274,6 @@ Gotowe! Twoja gra powinna pojawić się w menu konsoli po wgraniu programu.
 
 # Dokumentacja kodu
 
-
 ## Obsługa głównego wyświetlacza matrycowego
 
 - ### `void setPixel(uint8_t x, uint8_t y, Color color)`
@@ -406,7 +403,11 @@ Rysowanie odbywa się za pomocą lewego oraz prawego przycisku myszy. Kolor przy
 
 ![](docs/assets/drawingTool.png)
 
-# Obsługa GitHub
+# Synchronizacja i zarządzanie kodem z wykorzystaniem platformy GitHub
+
+Współpraca nad kodem gier opiera się na klonowaniu wspólnego repozytorium oraz wykorzystaniu systemu Git do aktualizacji plików na platformie GitHub. W tym celu należy zwrócić się z prośbą o nadanie uprawnień do modyfikacji repozytorium do **przewodniczącego TKN**.
+
+Najłatwiej jest wykorzystać w tym celu aplikację [GitHub Desktop](https://desktop.github.com/download/). Należy zalogować się na swoje konto i [sklonować](https://docs.github.com/en/desktop/adding-and-cloning-repositories/cloning-a-repository-from-github-to-github-desktop) to repozytorium. 
 
 # Uwagi, wskazówki i rozwiązywanie problemów
 
