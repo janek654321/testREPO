@@ -1,5 +1,6 @@
-docs/
-simulator/
-drawingTool.html
-README.md
-.gitignore
+*.d
+*.o
+*.exe
+simulator
+!simulator/
+
