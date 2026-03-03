@@ -2,6 +2,7 @@
 #define GAME_REGISTRY_H
 #include "Engine.h"
 
+#include "UGra2.h"
 #include "DemoGame.h"
 #include "Tetris.h"
 #include "Connect4.h"
@@ -17,6 +18,7 @@ struct GameEntry {
 const GameEntry GAMES_LIST[] = {
     ADDGAME(Tetris, "TETRIS")
     ADDGAME(Connect4, "CONNECT 4")
+	ADDGAME(UGra2, "UGRA2")
     ADDGAME(DemoGame, "DEMO")
 };
 
