@@ -16,7 +16,6 @@ ConsoleSettings userConfig;
 Game* activeGame = nullptr;
 int8_t switchGame = -1;
 
-
 void setup() {
   pinMode(TFT_LED_PIN, OUTPUT);
   pinMode(ESC_LED_PIN, OUTPUT);

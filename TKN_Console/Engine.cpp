@@ -104,3 +104,10 @@ void setPixel(uint8_t x, uint8_t y, Color color) {
   if (x >= 10 || y >= 20) return;
   leds[(9 - x) * 20 + (x % 2 ? 20 - y : 1 + y)] = colorLUT[color][(x == 1 || x == 3 || x == 6 || x == 8)];
 }
+
+void printCentered(const char* text, uint8_t yPos, uint8_t fontSize) {
+  uint8_t len = strlen(text);
+  tft.setTextSize(fontSize);
+  tft.setCursor((160 - fontSize * (len * 5 + (len - 1))) / 2, yPos);
+  tft.print(text);
+}

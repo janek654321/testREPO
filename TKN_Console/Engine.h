@@ -38,6 +38,7 @@
 
 const uint32_t btnExitHoldTime = 1500;
 
+extern Adafruit_ST7735 tft;
 extern CRGB leds[WS2812B_NUM_LEDS];
 
 struct ConsoleSettings {
@@ -110,5 +111,7 @@ public:
 };
 
 void setPixel(uint8_t x, uint8_t y, Color color);
+
+void printCentered(const char* text, uint8_t yPos, uint8_t fontSize);
 
 #endif

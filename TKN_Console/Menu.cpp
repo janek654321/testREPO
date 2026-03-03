@@ -154,13 +154,6 @@ void Menu::setFastLEDdigit(uint8_t x, uint8_t y, uint8_t n) {
   }
 }
 
-void Menu::printCentered(const char* text, uint8_t yPos, uint8_t fontSize) {
-  uint8_t len = strlen(text);
-  tft.setTextSize(fontSize);
-  tft.setCursor((160 - fontSize * (len * 5 + (len - 1))) / 2, yPos);
-  tft.print(text);
-}
-
 void Menu::changeScreen(uint8_t n) {
   mode = ITEM_SEL;
   if (n != currentScreen) {

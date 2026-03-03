@@ -51,7 +51,7 @@ private:
   const uint16_t COLOR_BG = ST7735_BLACK;
   const uint16_t COLOR_TITLE = ST7735_GREEN;
   const uint16_t COLOR_TEXT = ST7735_WHITE;
-  const uint16_t COLOR_SEL_BG = ST7735_BLUE;
+  const uint16_t COLOR_SEL_BG = 0x06FF;
 
   static constexpr const char* const settingsTitles[] = {
     "CLOCK",
@@ -70,7 +70,6 @@ private:
   int8_t values[2] = {};
   uint8_t maxValues[2] = {};
 
-  void printCentered(const char* text, uint8_t yPos, uint8_t fontSize);
   void changeScreen(uint8_t n);
   void scrollMenu(int8_t idxDelta);
   void highlightItem(int8_t idx, bool highlight);

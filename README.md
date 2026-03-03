@@ -368,6 +368,12 @@ Możliwa jest obsługa przycisku `BTN_ESC`, jednak należy pamiętać, że jego 
 
 Wyświetlacz jest już skonfigurowany (przez program główny) i gotowy do użycia pod obiektem `tft`. Metody i stałe przydatne do jego obsługi można poznać analizując kod innych gier (w tym menu konsoli) lub też bezpośrednio w dokumentacji bibliotek [**Adafruit GFX**](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-gfx-graphics-library.pdf) i [**Adafruit ST7735**](https://github.com/adafruit/Adafruit-ST7735-Library).
 
+Dostępna jest jedna dodatkowa funkcja globalna z pliku `Engine.h`:
+
+- `void printCentered(const char* text, uint8_t yPos, uint8_t fontSize)`
+
+    Pozwala ona na wypisanie na ekranie wyśrodkowanego horyzontalnie tekstu `text` na wysokości `yPos` o rozmiarze `fontSize`.
+
 ## Obsługa systemu plików
 
 Dane (np. tablicę wyników w grze) można zapisywać w pamięci nieulotnej (FLASH) jako pliki. Dane te najlepiej przechowywać w dowolnej strukturze:
