@@ -341,7 +341,7 @@ Zdefiniowane nazwy przycisków `Button`:
 <br>
 
 **Uwaga!**<br>
-Możliwa jest obsługa przycisku BTN_ESC, jednak należy pamiętać, że jego przytrzymanie przez 1,5 s powoduje zamknięcie gry - logika ta zaimplementowana jest na poziomie programu głównego.
+Możliwa jest obsługa przycisku `BTN_ESC`, jednak należy pamiętać, że jego przytrzymanie przez 1,5 s powoduje zamknięcie gry - logika ta zaimplementowana jest na poziomie programu głównego.
 
 ## Obsługa wyświetlacza TFT
 
